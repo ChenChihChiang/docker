@@ -1,2 +1,9 @@
-FROM nginx
-MAINTAINER chihchinag@gmail.com
+FROM alpine:3.4
+ 
+RUN apk update && \
+  apk add \
+    ca-certificates && \
+  rm -rf /var/cache/apk/*
+ 
+ADD drone-line /bin/
+ENTRYPOINT ["/bin/drone-line"]
