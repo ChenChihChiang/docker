@@ -1,15 +1,16 @@
 sudo: required
-
-language: ruby
-
+language: python
 services:
   - docker
-
+python:
+    - "3.5"
 before_install:
-- docker pull carlad/sinatra
-- docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
-- docker ps -a
-- docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
-
-script:
-- bundle exec rake test
+  - sudo apt-get update
+  - sudo apt-get install sshpass
+install: "pip install -r requirements.txt"
+script: 
+  - python --version
+after_success:
+  - docker login -u="chihchinag" -p="690927JOHNchen"
+  - docker build -t chihchinag/travisci:$TRAVIS_BRANCH-$TRAVIS_BUILD_ID . 
+  - docker push chihchinag/travisci:$TRAVIS_BRANCH-$TRAVIS_BUILD_ID;
