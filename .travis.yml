@@ -6,10 +6,9 @@ python:
     - "3.5"
 before_install:
   - sudo apt-get update
-  - sudo apt-get install sshpass
 script: 
   - python --version
 after_success:
   - docker login -u="chihchinag" -p="690927JOHNchen"
-  - docker build -t chihchinag/travisci:$TRAVIS_BRANCH-$TRAVIS_BUILD_ID . 
-  - docker push chihchinag/travisci:$TRAVIS_BRANCH-$TRAVIS_BUILD_ID;
+  - docker build -t chihchinag/travisci:1 . 
+  - docker push chihchinag/travisci:1;
