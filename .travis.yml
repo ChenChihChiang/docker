@@ -10,5 +10,5 @@ script:
   - python --version
 after_success:
   - docker login -u="chihchinag" -p="690927JOHNchen"
-  - docker build -t chihchinag/travisci:1 . 
-  - docker push chihchinag/travisci:1
+  - docker build -t chihchinag/travisci:$TRAVIS_BRANCH-$TRAVIS_BUILD_ID . 
+  - docker push chihchinag/travisci:$TRAVIS_BRANCH-$TRAVIS_BUILD_ID
