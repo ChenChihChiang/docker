@@ -11,4 +11,4 @@ script:
 after_success:
   - docker login -u="chihchinag" -p="690927JOHNchen"
   - docker build -t chihchinag/travisci:1 . 
-  - docker push chihchinag/travisci:1;
+  - docker push chihchinag/travisci:1
